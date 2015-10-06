@@ -26,10 +26,11 @@ class HashMap(object):
     if self.keys[hashvalue] is None: 
     	self.keys[hashvalue] = key
     	self.items[hashvalue] = value
+    	return True
     else: # There is a conflict.
     	tryagain = self.rehashme(hashvalue)
     	# Loop until you find an empty slot.
-    	while (not self.keys[tryagain] is None) and (self.keys[nextsplot] != key):
+    	while (not self.keys[tryagain] is None) and (self.keys[tryagain] != key):
     		tryagain = self.rehashme(tryagain)
     	# Double check if we found an empty spot.
     	if self.keys[tryagain] is None: 

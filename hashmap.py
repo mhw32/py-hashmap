@@ -82,7 +82,7 @@ class HashMap(object):
     return returnValue
 
   def load(self):
-    if (self.count + self.size == 0) 
+    if (self.count + self.size == 0): 
     	return 0
     return self.count / float(self.size)
 
@@ -91,4 +91,4 @@ class HashMap(object):
   	return self.get(key)
 
   def __setitem__(self, key, value):
-  	return self.put(key, value)
+  	return self.set(key, value)

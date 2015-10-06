@@ -15,7 +15,7 @@ class HashMap(object):
 
   # This is a really bad hash. 
   def hashme(self, key):
-    return key.__hash__()
+    return key.__hash__() % self.size
 
   def rehashme(self, oldhash):
     return (oldhash + 1) % self.size

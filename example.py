@@ -18,6 +18,12 @@ values = [2*i for i in keys]
 for k, v in zip(keys, values):
   H.set(k, v)
 
+# To get a key.
+H.get(23)
+
+# To delete a key.
+H.delete(23)
+
 # Print the stored things and summary stats.
 print("The load is %f." % H.load())
 print("The keys in H: ", H.keys)

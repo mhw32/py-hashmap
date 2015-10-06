@@ -59,8 +59,27 @@ class HashMap(object):
     return myitem
 
   def delete(self, key):
-    # Do something
-    self.count -= 1
+  	# This is important to prevent looping.
+    initialvalue = self.hashme(key)
+    hashvalue = initialvalue
+    returnValue = None # Default if not found.
+    exitloop = False
+    while (not self.keys[hashvalue] is None) and (not exitloop):
+    	if self.keys[hashvalue] == key:
+    		# return value associated with deleted value.
+    		returnValue = self.items[hashvalue]
+    		# Set the values to null (thereby deleting it).
+    		self.keys[hashvalue] = None
+    		self.items[hashvalue] = None
+    		# Record the deletion.
+    		self.count -= 1
+    		exitloop = True # Indicate we found key.
+    	else: # tryagain
+    		hashvalue = self.rehashme(hashvalue)
+    		if hashvalue == initialvalue: 
+    			exitloop = True # Inidicate we found loop.
+    			# This will output None
+    return returnValue
 
   def load(self):
     if (self.count + self.size == 0) 

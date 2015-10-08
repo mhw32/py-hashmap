@@ -1,7 +1,7 @@
 # *************************************
 #  Fixed-size Hash Map Implementation
 #  Author: Mike Wu
-#  Description: Uses stupid simple mod 
+#  Description: Uses __hash__
 #  hashing with linear probing. 
 # *************************************
 
@@ -13,7 +13,7 @@ class HashMap(object):
     self.keys = [None]*size
     self.items = [None]*size
 
-  # This is a really bad hash. 
+  # Rely on python for the hash. 
   def hashme(self, key):
     return key.__hash__() % self.size
 
@@ -27,6 +27,7 @@ class HashMap(object):
     if self.keys[hashvalue] is None: 
       self.keys[hashvalue] = key
       self.items[hashvalue] = value
+      self.count += 1
       returnvalue = True
     else: # There is a conflict.
       if self.keys[hashvalue] == key:

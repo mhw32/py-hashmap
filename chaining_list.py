@@ -2,11 +2,13 @@
 #  Fixed-size Hash Map Implementation
 #  Author: Mike Wu
 #  Description: Uses __hash__
-#  with chaining for more efficient 
-#  storage than linear probing.
+#  with chaining using linked lists.
 # **************************************
 
 # Possible way to make the code more efficient: once the load factor increases beyond a certain threshold, we should double the table length and reorganize the chains. But because our hash must be fixed size, we can't do this.
+
+# You can do this w/ either a linked list or a binary search tree. For a linked list, the benefit is O(1) storage but you get O(N) search.
+# For BST, you get O(logN) for both. Here I've chosen an approximation for linked lists. See chaining_bst.py for my implementation with binary search trees (which is probably better if we are doing gets() frequently.)
 
 class HashMap(object):
   def __init__(self, size):
@@ -20,26 +22,16 @@ class HashMap(object):
   def hashme(self, key):
     return key.__hash__() % self.size
 
-  def rehashme(self, oldhash):
-    return (oldhash + 1) % self.size
-
   def set(self, key, value):
     hashvalue = self.hashme(key)
-    returnvalue = False
-    # No conflict? Just add it to the list.
-    if self.keys[hashvalue] is None: 
+    # If the key already exists, find it and set the value.
+    if key in self.keys[hashvalue]: 
+      index = self.keys[hashvalue].index(key)
+      self.items[hashvalue][index] = value # Handle replacement.
+    else: # The key does not exist, so we can just append it to the bucket it wants to be inside. 
       self.keys[hashvalue].append(key)
       self.items[hashvalue].append(value)
       self.count += 1
-    else: # There is a conflict.
-      # If the key already exists, find it and set the value.
-      if key in self.keys[hashvalue]: 
-        index = self.keys[hashvalue].index(key)
-        self.items[hashvalue][index] = value # Handle replacement.
-      else: # The key does not exist, so we can just append it to the bucket it wants to be inside. 
-        self.keys[hashvalue].append(key)
-        self.items[hashvalue] = value
-        self.count += 1
     # We will always return True here because worst case, we just append it to a list. This has speed problems but by nature of being fixed size, we can't do much about it.
     return True
 
@@ -68,6 +60,7 @@ class HashMap(object):
       self.count -= 1
     return returnValue
 
+  # Note: With Chaining using "linked lists", it is possible to have a load factor > 1. I know in the spec it says you can't but in fact you can. 
   def load(self):
     if (self.count + self.size == 0): 
       return 0
@@ -80,6 +73,8 @@ class HashMap(object):
   def __setitem__(self, key, value):
     return self.set(key, value)
 
+  def __repr__(self):
+    return "<HashMap, style:chaining-list, size:%d>" % size 
 
 
 

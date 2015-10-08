@@ -100,3 +100,8 @@ class HashMap(object):
 
   def __setitem__(self, key, value):
     return self.set(key, value)
+
+  def __repr__(self):
+    return "<HashMap, style:linear-probing, size:%d>" % size 
+
+

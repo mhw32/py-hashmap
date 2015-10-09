@@ -5,8 +5,6 @@
 #  with chaining using linked lists.
 # **************************************
 
-# Possible way to make the code more efficient: once the load factor increases beyond a certain threshold, we should double the table length and reorganize the chains. But because our hash must be fixed size, we can't do this.
-
 # You can do this w/ either a linked list or a binary search tree. For a linked list, the benefit is O(1) storage but you get O(N) search.
 # For BST, you get O(logN) for both. Here I've chosen an approximation for linked lists. See chaining_bst.py for my implementation with binary search trees (which is probably better if we are doing gets() frequently.)
 
@@ -74,7 +72,7 @@ class HashMap(object):
     return self.set(key, value)
 
   def __repr__(self):
-    return "<HashMap, style:chaining-list, size:%d>" % size 
+    return "<HashMap, style:chaining-list, size:%d>" % self.size 
 
 
 

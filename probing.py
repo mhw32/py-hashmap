@@ -35,8 +35,8 @@ class HashMap(object):
         returnvalue = True
       else:
         tryagain = self.rehashme(hashvalue)
-        # Loop until you find an empty slot.
-        while (not self.keys[tryagain] is None) and (self.keys[tryagain] != key):
+        # Loop until you find an empty slot. (Make sure you don't loop)
+        while (not self.keys[tryagain] is None) and (tryagain != hashvalue):
           tryagain = self.rehashme(tryagain)
         # Double check if we found an empty spot.
         if self.keys[tryagain] is None: 
@@ -102,6 +102,6 @@ class HashMap(object):
     return self.set(key, value)
 
   def __repr__(self):
-    return "<HashMap, style:linear-probing, size:%d>" % size 
+    return "<HashMap, style:linear-probing, size:%d>" % self.size 
 
 

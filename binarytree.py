@@ -1,9 +1,9 @@
 # Code adapted from: https://gist.github.com/bshyong/8205644
-
+# ----------------------------------------------------------
 # Node class in the binary search tree. Each node stores the size of its own subtree, its parent, and a key to identify it.
 class Node(object):
-    def __init__(self, parent, idx, value):
-        self.key = idx
+    def __init__(self, parent, key, value):
+        self.key = key
         self.value = value
         self.size = 1 
         self.parent = parent
@@ -15,35 +15,35 @@ class Node(object):
         self.size = (0 if self.left is None else self.left.size) + (0 if self.right is None else self.right.size) 
 
     # Add an additional member to the Node.
-    def insert(self, idx, value):
+    def insert(self, key, value):
         self.size += 1
-        if idx < self.key:
+        if key < self.key:
             if self.left is None:
-                self.left = Node(self, idx, value)                
+                self.left = Node(self, key, value)                
                 return self.left
             else:
-                return self.left.insert(idx, value)
+                return self.left.insert(key, value)
         else:
             if self.right is None:
-                self.right = Node(self, idx, value)   
+                self.right = Node(self, key, value)   
                 return self.right
             else:
-                return self.right.insert(idx, value)
+                return self.right.insert(key, value)
 
     # Search the Node for a member.
-    def search(self, idx):
-        if idx == self.key:
+    def search(self, key):
+        if key == self.key:
             return self
-        elif idx < self.key:
+        elif key < self.key:
             if self.left is None:
                 return None
             else:
-                return self.left.search(idx)
+                return self.left.search(key)
         else:
             if self.right is None:
                 return None
             else:
-                return self.right.search(idx)
+                return self.right.search(key)
 
     # Returns Node with the smallest key in the subtree.
     def minimum(self): # Basically walks down the tree.
@@ -90,30 +90,31 @@ class Node(object):
 class BinarySearchTree(object):
     def __init__(self):
         self.root = None
-        self.psroot = self.Node(None, None)
+        self.Node = Node
+        self.psroot = self.Node(None, None, None)
     
     def reroot(self):
         self.root = self.psroot.left
 
     # Insert into the tree.
-    def insert(self, idx, value):
+    def insert(self, key, value):
         if self.root is None:
-            self.psroot.left = self.Node(self.psroot, idx, value)
+            self.psroot.left = self.Node(self.psroot, key, value)
             self.reroot()
             return self.root
         else:
-            return self.root.insert(idx)
+            return self.root.insert(key, value)
     
-    # Return the node for key t if is in the tree. Default None.
-    def search(self, idx):
+    # Return the node for key if is in the tree. Default None.
+    def search(self, key):
         if self.root is None:
             return None
         else:
-            return self.root.search(idx) 
+            return self.root.search(key) 
     
     # Delete the node for key t if it is in the tree.
-    def delete(self, idx):
-        node = self.search(idx)
+    def delete(self, key):
+        node = self.search(key)
         deleted = self.root.delete()
         self.reroot()
         return deleted

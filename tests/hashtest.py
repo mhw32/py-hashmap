@@ -15,7 +15,9 @@ import chaining_list as clist
 # Probing: Expectation [13 /13]
 # Linear Chaining: Expectation [11 /13]
 # Tree Chaining: Expectation [11 /13]
+# We expect some failures for chaining because set() will never return false and load() might be over 1.
 
+# The following tests look at type, collisions, load, and boolean return statements from the tests. Not super comprehensive but good enough.
 class HashTest(unittest.TestCase):
   # Define which HashMap we are using
   Hash = probing.HashMap(5)
@@ -41,7 +43,7 @@ class HashTest(unittest.TestCase):
     self.assertEqual(type(Hash.hashme("blah")), int)
 
   def test3b(self): # integers should work too.
-    self.assertEqual(type(Hash.hashme(2)), int
+    self.assertEqual(type(Hash.hashme(2)), int)
 
   # [ MAY FAIL ] Test 4 : Make sure set() should return False (since everything is full and things should conflict). Only works for probing.
   def test4(self):

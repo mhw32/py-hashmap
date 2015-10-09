@@ -15,8 +15,15 @@ In this folder, there are three different implementations of a HashMap:
   1. Linear Probing
   2. Chaining w/ Lists
   3. Chaining w/ Binary search trees. (includes a BST implementation)
-  4. See ```/examples``` for example scripts on how to run the three different implementations.
+  4. See ```/examples``` for example scripts on how to run the three different implementations. 
   5. See ```/tests``` for simple Unit Tests. This used the ```unittest``` library in Python.
+
+## Usage
+To run the unit tests:
+  ```python hashtest-linearprobing.py```
+
+To run the examples: 
+  ```python example-chaining-list.py```
 
 ## Implementation Details
 

@@ -10,7 +10,7 @@ In creating this hashmap, the following assumptions were made:
   3. The hashmap is to be FIXED size. This means that I cannot do things like double the table size to allow for more efficient key,value pair storage. I think this inherently introduces some speed issues. 
 
 ## Contents
-In this folder, there are three different implementations of a HashMap:
+In this folder, there are three different implementations of a HashMap (Pick the one you like! I like the binary search tree one the most):
 
   1. Linear Probing
   2. Chaining w/ Lists

@@ -8,13 +8,14 @@
 import unittest
 import sys
 sys.path.append('../')
-import chaining_list as clist
+import chaining_bst as cbst
+import binarytree
 
 # The following tests look at type, collisions, load, and boolean return statements from the tests. Not super comprehensive but good enough.
 class HashTest(unittest.TestCase):
   @classmethod
   def setUpClass(cls):
-    cls.Hash = clist.HashMap(5)
+    cls.Hash = cbst.HashMap(5)
     # Fill up the Hash w/ string keys
     for i in range(5):
       cls.Hash.set(str(i), i) 
@@ -23,20 +24,12 @@ class HashTest(unittest.TestCase):
   def test1(self):
     self.assertEqual(self.Hash.size, 5)
 
-  # Test 2 : Make sure that all default correctly.
-  def test2a(self): 
-    # We can check the lengths of each of the sublists
-    self.assertSequenceEqual([0,3,0,0,2], [len(i) for i in self.Hash.keys])
-  
+  def test2a(self):
+    self.assertEqual(len(self.Hash.stack), 5)
+
   def test2b(self):
-    self.assertSequenceEqual([0,3,0,0,2], [len(i) for i in self.Hash.items])
+    self.assertTrue(isinstance(self.Hash.stack[0], binarytree.BinarySearchTree))
   
-  def test2c(self):
-    self.assertSequenceEqual([[],['0','2','4'],[],[],['1','3']], self.Hash.keys)
-
-  def test2d(self):
-    self.assertSequenceEqual([[],[0,2,4],[],[],[1,3]], self.Hash.items)
-
   # Test 3 : Make sure that hashme fxn returns an integer less than size.
   def test3a(self):
     self.assertTrue(isinstance(self.Hash.hashme('blah'), int))

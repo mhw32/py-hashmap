@@ -6,7 +6,10 @@
 #  Hashmap.
 # *************************************
 
+import sys
+sys.path.append('../')
 import chaining_bst as cbst
+
 N = 5
 H = cbst.HashMap(N)
 # Random strings

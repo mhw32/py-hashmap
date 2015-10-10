@@ -41,9 +41,9 @@ class HashMap(object):
     hashvalue = self.hashme(key)
     findNode = self.stack[hashvalue].search(key)
     if not findNode is None:
-      self.stack[hashvalue].delete(key)
+      retval = self.stack[hashvalue].delete(key)
       self.count -= 1
-      return findNode.value
+      return retval.value
     return None
 
   # As with chaining, it is possible to have load factor > 1.

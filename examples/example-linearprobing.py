@@ -4,8 +4,10 @@
 #  Description: Example of how to run
 #  the linear-probing version of Hashmap.
 # *************************************
-
+import sys
+sys.path.append('../')
 import probing
+
 # Choose a size and Initialize the file.
 N = 5
 H = probing.HashMap(N)

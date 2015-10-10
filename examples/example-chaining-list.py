@@ -5,8 +5,10 @@
 #  the chaining (w/ lists) version of 
 #  Hashmap.
 # *************************************
-
+import sys
+sys.path.append('../')
 import chaining_list as clist
+
 N = 5
 H = clist.HashMap(N)
 # Random strings

@@ -115,9 +115,11 @@ class BinarySearchTree(object):
     # Delete the node for key t if it is in the tree.
     def delete(self, key):
         node = self.search(key)
-        deleted = self.root.delete()
-        self.reroot()
-        return deleted
+        if not node is None:
+            deleted = node.delete()
+            self.reroot()
+            return deleted
+        return None
 
     def __repr__(self):
         return "<BinarySearchTree>"

@@ -33,10 +33,10 @@ class HashTest(unittest.TestCase):
       
   # Test 3 : Make sure that hashme fxn returns an integer less than size.
   def test3a(self):
-    self.assertEqual(type(self.Hash.hashme('blah')), int)
+    self.assertTrue(isinstance(self.Hash.hashme('blah'), int))
 
   def test3b(self): # integers should work too.
-    self.assertEqual(type(self.Hash.hashme('2')), int)
+    self.assertTrue(isinstance(self.Hash.hashme('2'), int))
 
   # [ MAY FAIL ] Test 4 : Make sure set() should return False (since everything is full and things should conflict). Only works for probing.
   def test4(self):

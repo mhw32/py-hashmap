@@ -12,7 +12,7 @@ H = clist.HashMap(N)
 # Random strings
 keys = ['dog', 'god', 'cat', 'mommy', 'kpcb', 'acceptme', 'foobar']
 # For purposes of an example, try to use as varied types as possible.
-values = [[1,2,3], 'asd', 12302, clist.HashMap(2), 12, "please", False]
+values = [[1,2,3], 'asd', 12302, clist.HashMap(2), 12, 'please', False]
 # Notice that the load here will go over 1 and that is okay.
 for k, v in zip(keys, values):
   H.set(k, v)

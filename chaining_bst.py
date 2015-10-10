@@ -5,8 +5,7 @@
 #  with chaining using binary search trees.
 # *****************************************
 
-import binarytree
-
+from binarytree import *
 class HashMap(object):
   def __init__(self, size):
     self.count = 0
@@ -24,7 +23,7 @@ class HashMap(object):
     findNode = self.stack[hashvalue].search(key)
     if not findNode is None: # Handle replacement
       findNode.value = value
-    else: # The key does not exist, so add it to the tree.
+    else: # The key does not exist, so add its hash (which is always a number) to the tree.
       self.stack[hashvalue].insert(key, value)
       self.count += 1
     # We will always return True here because worst case, we just append it to a list. This has speed problems but by nature of being fixed size, we can't do much about it.
@@ -36,15 +35,16 @@ class HashMap(object):
     findNode = self.stack[hashvalue].search(key)
     if not findNode is None:
       return findNode.value
-    return findNode # None
+    return None
 
   def delete(self, key):
     hashvalue = self.hashme(key)
-    find = self.stack[hashvalue].search(key)
-    if not find is None:
+    findNode = self.stack[hashvalue].search(key)
+    if not findNode is None:
       self.stack[hashvalue].delete(key)
       self.count -= 1
-    return find
+      return findNode.value
+    return None
 
   # As with chaining, it is possible to have load factor > 1.
   def load(self):
@@ -60,5 +60,5 @@ class HashMap(object):
     return self.set(key, value)
 
   def __repr__(self):
-    return "<HashMap, style:chaining-bst, size:%d>" % size 
+    return "<HashMap, style:chaining-bst, size:%d>" % self.size 
     
